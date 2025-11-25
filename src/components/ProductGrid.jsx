@@ -5,7 +5,7 @@ export default function ProductGrid() {
   const { products, addToCart } = useApp();
 
   return (
-    <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mt-10 mr-10">
       {products.map(product => (
         <div
           key={product.id}

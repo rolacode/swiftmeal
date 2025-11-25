@@ -1,5 +1,4 @@
-import React from "react";
-import { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
 const AppContext = createContext();
 
@@ -16,10 +15,27 @@ const dummyProducts = [
 ];
 
 export const AppProvider = ({ children }) => {
-  const [darkMode, setDarkMode] = useState(false);
+  // Load previous stored theme
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem("darkMode") === "true";
+  });
+
   const [cart, setCart] = useState([]);
   const [cartOpen, setCartOpen] = useState(false);
-  const [products, setProducts] = useState(dummyProducts);
+  const [products] = useState(dummyProducts);
+
+  // Apply dark mode to HTML (IMPORTANT FIX)
+  useEffect(() => {
+    const html = document.documentElement;
+
+    if (darkMode) {
+      html.classList.add("dark");
+    } else {
+      html.classList.remove("dark");
+    }
+
+    localStorage.setItem("darkMode", darkMode);
+  }, [darkMode]);
 
   const toggleDarkMode = () => setDarkMode(prev => !prev);
   const openCart = () => setCartOpen(true);
@@ -39,20 +55,20 @@ export const AppProvider = ({ children }) => {
   };
 
   return (
-    <AppContext.Provider value={{
-      darkMode,
-      toggleDarkMode,
-      cart,
-      cartOpen,
-      openCart,
-      closeCart,
-      addToCart,
-      removeFromCart,
-      products,
-    }}>
-      <div className={darkMode ? "dark" : ""}>
-        {children}
-      </div>
+    <AppContext.Provider
+      value={{
+        darkMode,
+        toggleDarkMode,
+        cart,
+        cartOpen,
+        openCart,
+        closeCart,
+        addToCart,
+        removeFromCart,
+        products,
+      }}
+    >
+      {children}
     </AppContext.Provider>
   );
 };

@@ -1,26 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { useState } from "react";
 import { useApp } from "../context/AppContext";
 import CategoryDropdown from "./CategoryDropdown";
 import DarkModeToggle from "./DarkModeToggle";
 
 export default function Navbar() {
   const [catOpen, setCatOpen] = useState(false);
+  const [mobileMenu, setMobileMenu] = useState(false);
   const { cart, openCart } = useApp();
 
   return (
     <nav className="fixed top-0 left-0 w-full bg-white dark:bg-gray-900 shadow-md z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Top nav */}
-        <div className="flex justify-between h-16 items-center">
+
+        {/* -------------------- TOP NAV -------------------- */}
+        <div className="flex justify-between items-center h-16">
+
           {/* Logo */}
-          <Link to="/" className="font-bold text-xl text-orange-500">
+          <Link
+            to="/"
+            className="font-bold text-xl text-orange-500 flex-shrink-0"
+          >
             SWI<span className="text-black dark:text-white">F</span>T MEAL
           </Link>
 
-          {/* Menu */}
-          <div className="hidden md:flex space-x-6">
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center space-x-6">
+
             <NavLink
               to="/"
               className={({ isActive }) =>
@@ -32,6 +38,7 @@ export default function Navbar() {
             >
               Home
             </NavLink>
+
             <NavLink
               to="/about"
               className={({ isActive }) =>
@@ -42,6 +49,7 @@ export default function Navbar() {
             >
               About Us
             </NavLink>
+
             <NavLink
               to="/order-tracking"
               className={({ isActive }) =>
@@ -50,8 +58,9 @@ export default function Navbar() {
                   : "text-gray-700 dark:text-gray-300 hover:text-orange-500"
               }
             >
-              Order Tracker
+              Order Tracking
             </NavLink>
+
             <NavLink
               to="/services"
               className={({ isActive }) =>
@@ -64,27 +73,21 @@ export default function Navbar() {
             </NavLink>
           </div>
 
-          {/* Right Buttons */}
-          <div className="flex items-center space-x-4">
+          {/* Right side */}
+          <div className="hidden md:flex items-center space-x-4">
             <DarkModeToggle />
+
+            {/* Cart */}
             <button
               onClick={openCart}
-              aria-label="Open cart"
               className="relative text-gray-700 dark:text-gray-300 hover:text-orange-500"
             >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor">
                 <circle cx="9" cy="21" r="1" />
                 <circle cx="20" cy="21" r="1" />
-                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                <path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6" />
               </svg>
+
               {cart.length > 0 && (
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
                   {cart.length}
@@ -92,24 +95,104 @@ export default function Navbar() {
               )}
             </button>
 
-            <Link
-              to="/login"
-              className="px-4 py-1 rounded text-white bg-black hover:bg-gray-800"
-            >
+            {/* Login Buttons */}
+            <Link to="/login" className="px-4 py-1 bg-black text-white rounded">
               Login
             </Link>
+
             <Link
               to="/register"
-              className="px-4 py-1 rounded border border-black dark:border-white text-black dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+              className="px-4 py-1 border border-black dark:border-white rounded text-black dark:text-white"
             >
-              Sign In
+              Sign Up
             </Link>
           </div>
+
+          {/* ---------- MOBILE MENU BUTTON ---------- */}
+          <button
+            className="md:hidden text-gray-700 dark:text-gray-300"
+            onClick={() => setMobileMenu((prev) => !prev)}
+          >
+            <svg
+              className="w-7 h-7"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              {mobileMenu ? (
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
         </div>
 
-        {/* Secondary nav - Categories */}
+        {/* -------------------- MOBILE DROPDOWN MENU -------------------- */}
+        {mobileMenu && (
+          <div className="md:hidden mt-2 space-y-4 space-x-4 pb-4">
+
+            <NavLink to="/" className="block text-gray-700 dark:text-gray-300">
+              Home
+            </NavLink>
+
+            <NavLink to="/about" className="block text-gray-700 dark:text-gray-300">
+              About Us
+            </NavLink>
+
+            <NavLink to="/order-tracking" className="block text-gray-700 dark:text-gray-300">
+              Order Tracking
+            </NavLink>
+
+            <NavLink to="/services" className="block text-gray-700 dark:text-gray-300">
+              Services
+            </NavLink>
+
+            {/* Categories mobile version */}
+            <div>
+              <p
+                className="font-semibold text-gray-500 dark:text-gray-300 cursor-pointer"
+                onClick={() => setCatOpen((prev) => !prev)}
+              >
+                Categories ▼
+              </p>
+
+              {catOpen && <CategoryDropdown />}
+            </div>
+
+            {/* Login + cart */}
+            <div className="flex items-center space-x-4 pt-3">
+              <DarkModeToggle />
+
+              <button onClick={openCart} className="relative text-gray-700 dark:text-gray-300">
+                🛒
+                {cart.length > 0 && (
+                  <span className="absolute -top-1 -right-2 bg-red-500 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
+                    {cart.length}
+                  </span>
+                )}
+              </button>
+
+              <Link
+                to="/login"
+                className="px-4 py-1 bg-black text-white rounded"
+              >
+                Login
+              </Link>
+
+              <Link
+                to="/register"
+                className="px-4 py-1 border border-black dark:border-white rounded text-black dark:text-white"
+              >
+                Sign Up
+              </Link>
+            </div>
+          </div>
+        )}
+
+        {/* -------------------- CATEGORY BAR DESKTOP -------------------- */}
         <div
-          className="border-t border-gray-200 dark:border-gray-700 py-2 relative"
+          className="hidden md:block border-t border-gray-200 dark:border-gray-700 py-2 px-2 relative"
           onMouseLeave={() => setCatOpen(false)}
         >
           <span
@@ -119,28 +202,9 @@ export default function Navbar() {
             Categories
           </span>
 
-          {catOpen && <CategoryDropdown onLeave={() => setCatOpen(false)} />}
-
-          <div className="absolute right-0 top-2 flex items-center">
-            {/* Search icon */}
-            <button
-              aria-label="Search"
-              className="text-gray-700 dark:text-gray-300 hover:text-orange-500 mx-3"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="11" cy="11" r="7" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-              </svg>
-            </button>
-          </div>
+          {catOpen && (
+            <CategoryDropdown onLeave={() => setCatOpen(false)} />
+          )}
         </div>
       </div>
     </nav>
