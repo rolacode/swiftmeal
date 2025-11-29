@@ -1,0 +1,198 @@
+body {
+    /* Full viewport size */
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    font-family: Montserrat, sans-serif;
+    background-color: #f4f4f9; /* Light background for contrast */
+
+    /* Flexbox to Center Everything on the Screen */
+    display: flex;
+    flex-direction: COLUMN;
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
+    text-align: center; /* Center text content inside the container */
+}
+
+.container {
+    /* Optional: Limit the width of the content */
+    max-width: 400px;
+    padding: 20px;
+}
+
+/* --- Logo Styling --- */
+.logo img {
+    /* Ensures the image doesn't get too large */
+    max-width: 150px;
+    height: auto;
+    margin-top: 50px; /* Space above the logo */
+}
+
+.facebook logo img {
+    /* Ensures the image doesn't get too large */
+    width: 24px;
+    height: 24px;
+    margin-top: 50px; /* Space above the logo */
+}
+.google logo img {
+    /* Ensures the image doesn't get too large */
+     width: 24px;
+    height: 24px;
+    margin-top: 50px; /* Space above the logo */
+}
+
+/* --- Headings Styling --- */
+h1 {
+    color: #333;
+    font-size: 2.5em;
+    margin-bottom: 10px; /* Space above h2 */
+}
+
+h2 {
+    color: black;
+    font-size: 24px;
+    margin-bottom: 30px; /* Space below h2 (before buttons) */
+    font: Montserrat;
+}
+
+p2 {
+    color:#475569;
+    font-size: 14px;
+    margin-bottom: 30px; /* Space below h2 (before buttons) */
+     font: Montserrat;
+    
+}
+
+p3 {
+    color:black;
+    font-size: 14px;
+    margin-bottom: 30px; /* Space below h2 (before buttons) */
+     font: Montserrat;
+    margin: 20px;
+}
+
+p4 {
+    color:#FF5533;
+    font-size: 14px;
+    margin-top: 50px; /* Space below h2 (before buttons) */
+     font: Montserrat;
+   margin-bottom: 0px;
+}
+/* --- Button Group Styling --- */
+.button-group {
+    /* Flexbox to align buttons next to each other and center them */
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between the two buttons */
+}
+
+.select-btn {
+    /* Basic button styling */
+    width: 400px;
+    height: 80px;
+    text-decoration: none;
+    padding: 10px 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: white;
+    background-color: #FF5533; /* Green color for the button */
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    
+}
+
+
+.select {
+    /* Basic button styling */
+    width: 400px;
+    height: 80px;
+    padding: 10px 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color:  #FF5533;;
+    background-color: white; /* Green color for the button */
+    border:  yes;
+    border-color:   #FF5533;;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+   
+}
+
+.select2 {
+    /* Basic button styling */
+    width: 400px;
+    height: 80px;
+    padding: 10px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    color:  #1877F2;
+    background-color: white; /* Green color for the button */
+    border:  yes;
+    border-color:   #1877F2;;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+   
+}
+
+.select3 {
+    /* Basic button styling */
+    width: 400px;
+    height: 80px;
+    padding: 10px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    color:  #000000;
+    background-color: white; /* Green color for the button */
+    border:  yes;
+    border-color:   #1877F2;;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+   
+}
+
+.select-btn:hover {
+    background-color: #E03E1F; /* Darker green on hover */
+}
+
+.select:hover {
+    background-color: #E03E1F; /* Darker green on hover */
+    color: #ffffff; 
+}
+
+
+label {
+    display: block; /* Makes the label take up its own line */
+    margin-bottom: 0px;
+    color: #FF5533;
+}
+
+.email-input {
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    margin-: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    box-sizing: border-box; /* Includes padding and border in the element's total width and height */
+    transition: border-color 0.3s;
+}
+
+.email-input:focus {
+    border-color: #007bff; /* Highlight border when the field is active */
+    outline: none; /* Removes the default browser outline */
+}
+
+/* Optional: Style for when the email format is invalid */
+.email-input:invalid:not(:placeholder-shown) {
+    border-color: red;
+   
+}
+
+
