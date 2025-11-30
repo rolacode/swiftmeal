@@ -1,4 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { getPlaceholderUrl } from "../utiliy/getPlaceholderUrl";
+
 
 const AppContext = createContext();
 
@@ -15,13 +17,13 @@ export const dummyProducts = [
 ];
 
 export const ORDER_PRODUCTS = [
-  { title: "Mama's Choice", image: "/assets/products/salad.jpg"},
-  { title: 'Grain Sack', image: "/assets/products/potatoes.jpg"},
-  { title: 'Flour Bag', image: "/assets/products/apple.jpg"},
-  { title: 'Corn Meal', image: "/assets/products/salad.jpg"},
-  { title: 'Prepared Salmon', image: "/assets/products/salad.jpg"},
-  { title: 'Salad Side', image: "/assets/products/salad.jpg"},
-  { title: 'Rice & Veggies', image: "/assets/products/salad.jpg"},
+  { title: "Mama's Choice", image: getPlaceholderUrl("Mama's+Choice", 200, 280, 'fff', 'd00000') },
+  { title: 'Grain Sack', image: getPlaceholderUrl('Grain+Sack', 200, 280, '000', 'e9c46a') },
+  { title: 'Flour Bag', image: getPlaceholderUrl('Flour+Bag', 200, 280, '000', 'f8f5e3') },
+  { title: 'Corn Meal', image: getPlaceholderUrl('Corn+Meal', 200, 280, '000', 'ffd100') },
+  { title: 'Prepared Salmon', image: getPlaceholderUrl('Salmon+Dish', 280, 280, '000', 'f4f4f4') },
+  { title: 'Salad Side', image: getPlaceholderUrl('Side+Salad', 280, 280, '000', 'ff8c00') },
+  { title: 'Rice & Veggies', image: getPlaceholderUrl('Rice+Dish', 280, 280, '000', 'f4f4f4') },
 ];
 
 export const AppProvider = ({ children }) => {

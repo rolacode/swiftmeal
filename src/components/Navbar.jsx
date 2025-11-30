@@ -14,7 +14,7 @@ export const Navbar = () => {
         {/* Logo/Brand */}
         <div className="flex items-center space-x-2 ml-5">
           {/*logo image  */}
-          <Link to="/" className="text-xl font-bold text-gray-800">
+          <Link to="/" className="text-xl font-bold text-gray-800 i">
             <img src={logoSrc} alt="Swift Meal Logo" className="h-30 ml-2" />
           </Link>
         </div>

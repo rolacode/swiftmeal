@@ -2,6 +2,8 @@ import React from "react";
 // import OrderCard from "./OrderCard";
 import { ORDER_PRODUCTS } from "../context/AppContext";
 import { SectionHeader } from "../utiliy/SectionHeader";
+import { getPlaceholderUrl } from "../utiliy/getPlaceholderUrl";
+
 
 export default function MakeOrders() {
   const sackProducts = ORDER_PRODUCTS.slice(0, 4);
