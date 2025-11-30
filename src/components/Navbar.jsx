@@ -6,7 +6,7 @@ export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   //the logo from your assets
-  const logoSrc = '/assets/products/logo2.png'; // Replace with your actual logo path or use text
+  const logoSrc = '/assets/products/logo.png'; // Replace with your actual logo path or use text
 
   return (
     <nav className="bg-white p-4 shadow-md">
