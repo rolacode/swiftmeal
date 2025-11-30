@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 
 const AppContext = createContext();
 
-const dummyProducts = [
+export const dummyProducts = [
   { id: 1, name: "Fresh Salad", image: "/assets/products/salad.jpg", price: 12.99 },
   { id: 2, name: "Potatoes", image: "/assets/products/potatoes.jpg", price: 3.99 },
   { id: 3, name: "Red Onions", image: "/assets/products/onions.jpg", price: 2.99 },
@@ -12,6 +12,16 @@ const dummyProducts = [
   { id: 7, name: "Chicken Breast", image: "/assets/products/chicken.jpg", price: 10.99 },
   { id: 8, name: "Apple", image: "/assets/products/apple.jpg", price: 1.29 },
   { id: 9, name: "Eggs Tray", image: "/assets/products/eggs.jpg", price: 6.99 },
+];
+
+export const ORDER_PRODUCTS = [
+  { title: "Mama's Choice", image: "/assets/products/salad.jpg"},
+  { title: 'Grain Sack', image: "/assets/products/potatoes.jpg"},
+  { title: 'Flour Bag', image: "/assets/products/apple.jpg"},
+  { title: 'Corn Meal', image: "/assets/products/salad.jpg"},
+  { title: 'Prepared Salmon', image: "/assets/products/salad.jpg"},
+  { title: 'Salad Side', image: "/assets/products/salad.jpg"},
+  { title: 'Rice & Veggies', image: "/assets/products/salad.jpg"},
 ];
 
 export const AppProvider = ({ children }) => {

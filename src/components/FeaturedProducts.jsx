@@ -1,38 +1,22 @@
 import React from "react";
-import { useApp } from "../context/AppContext";
-import { motion } from "framer-motion";
+import ProductCard from "./ProductCard";
+import { dummyProducts } from "../context/AppContext";
 
 export default function FeaturedProducts() {
-  const { products, addToCart } = useApp();
-
   return (
-    <section className="max-w-7xl mx-auto px-4 mt-10 dark:text-white">
-      <h2 className="text-center text-2xl font-semibold">Featured Products</h2>
-      <p className="text-center text-gray-600 dark:text-gray-300 mt-2 mb-6">
-        Browse from our fresh daily produce.
-      </p>
+    <section className="container mx-auto px-4 py-16 max-w-7xl">
+      <div className="text-center mb-12">
+        <h2 className="text-3xl font-bold text-gray-900 mb-2">
+          Featured Products
+        </h2>
+        <p className="text-gray-600 max-w-lg mx-auto">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
+        </p>
+      </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-        {products.map((item) => (
-          <motion.div
-            key={item.id}
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3 }}
-            className="p-4 bg-white dark:bg-gray-800 rounded-lg shadow-sm"
-          >
-            <img
-              src={item.image}
-              className="w-full h-32 object-cover rounded-lg"
-            />
-
-            <button
-              onClick={() => addToCart(item)}
-              className="mt-3 w-full bg-red-500 text-white py-1 rounded-lg"
-            >
-              Add to cart
-            </button>
-          </motion.div>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+        {dummyProducts.map((product) => (
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
     </section>
