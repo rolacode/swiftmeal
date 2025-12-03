@@ -1,8 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
+
 @import "tailwindcss";
+
+@tailwind utilities;
+
+
+
 
 :root {
   --gradient: radial-gradient(circle, #e5e5e5 0%, #fff 100%);
+  --sw-orange: #FF6A3D;
+  --sw-orange-300: #FFD6C2;
 }
 
 html,
@@ -12,8 +21,10 @@ body {
   background-color: black;
   color: white;
   scroll-behavior: smooth;
-  font-family: "Mona Sans", sans-serif;
+  font-family: "Mona Sans", sans-serif, "Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial";
 }
+
+#root { height: 100%; }
 
 section {
   width: 100dvw;
@@ -338,6 +349,8 @@ section {
   flex-direction: column;
   animation: wordSlider 21s infinite cubic-bezier(0.9, 0.01, 0.3, 0.99);
 }
+
+.max-w-form { max-width: 720px; }
 
 @keyframes wordSlider {
   0% { transform: translateY(0.5%); }

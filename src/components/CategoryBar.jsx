@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 // Inline SVG for Chevron Down (used for dropdown)
 // const ChevronDownIcon = ({ className }) => (
@@ -21,7 +22,7 @@ const ShoppingCartIcon = ({ className }) => (
     </svg>
 );
 
-  const categories = [
+const categories = [
     "Fresh Food",
     "Cooked Food",
     "Fruits",
@@ -30,7 +31,7 @@ const ShoppingCartIcon = ({ className }) => (
     "Meat & Seafood",
     "Beverages",
     "Grains & Tubers",
-  ];
+];
 
 // The modified CategoryBar component
 export function CategoryBar({ onLeave }) {
@@ -97,7 +98,7 @@ export function CategoryBar({ onLeave }) {
 
                 {/* 2. Search Input (Conditional Visibility - Center/Expands) */}
                 {isSearchActive && (
-                    <div className="flex-grow mx-4 max-w-lg">
+                    <div className="grow mx-4 max-w-lg">
                         <input
                             type="text"
                             placeholder={`Search ${selectedCategory.toLowerCase() === 'all categories' ? 'all items' : selectedCategory}...`}
@@ -121,13 +122,10 @@ export function CategoryBar({ onLeave }) {
                     </button>
 
                     {/* Cart Icon */}
-                    <a href="/cart" className="relative p-2 text-gray-600 hover:text-orange-500 transition-colors" aria-label="Shopping Cart">
+                    <Link to="/cart" className="text-lg font-bold">
                         <ShoppingCartIcon className="w-6 h-6" />
-                        {/* Cart Item Count Badge (Static for demo) */}
-                        <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center ring-2 ring-white">
-                            3
-                        </span>
-                    </a>
+                    </Link>
+
                 </div>
 
             </div>

@@ -1,4 +1,4 @@
-export function getPlaceholderUrl(text = "Image") {
-  const encoded = encodeURIComponent(text);
-  return `https://placehold.co/300x200?text=${encoded}`;
+export function getPlaceholderUrl(text = "Image", width = 300, height = 200) {
+  const t = encodeURIComponent(text);
+  return `https://placehold.co/${width}x${height}?text=${t}`;
 }

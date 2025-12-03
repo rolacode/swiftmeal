@@ -10,18 +10,24 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^2.9.0",
     "@headlessui/react": "^2.2.9",
     "@heroicons/react": "^2.2.0",
+    "@hookform/resolvers": "^5.2.2",
+    "appwrite": "^21.4.0",
     "axios": "^1.13.2",
+    "firebase": "^12.6.0",
     "framer-motion": "^12.23.24",
     "lucide-react": "^0.555.0",
     "postcss-import": "^16.1.1",
     "postcss-nesting": "^13.0.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-hook-form": "^7.67.0",
     "react-icon": "^1.0.0",
     "react-icons": "^5.5.0",
-    "react-router-dom": "^7.9.6"
+    "react-router-dom": "^7.9.6",
+    "zod": "^4.1.13"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
