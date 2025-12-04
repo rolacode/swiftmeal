@@ -14,7 +14,7 @@ export default function Checkout() {
   if (!meal) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p className="text-gray-500">No meal selected. Go back to <span className="text-orange-600 cursor-pointer" onClick={()=>navigate("/buyer/dashboard")}>dashboard</span>.</p>
+        <p className="text-gray-500">No meal selected. Go back to <span className="text-orange-600 cursor-pointer" onClick={() => navigate("/buyer/dashboard")}>dashboard</span>.</p>
       </div>
     );
   }
@@ -40,9 +40,10 @@ export default function Checkout() {
       const session = await createCAMPCheckout({
         amount: meal.price,
         reference: orderRef.id,
-        successUrl: `${window.location.origin}/order-success?id=${orderRef.id}`,
-        webhookUrl: `${window.location.origin}/api/campWebhook`,
+        successUrl: `http://localhost:5173/order-success?id=${orderRef.id}`,
+        webhookUrl: "https://us-central1-swift-meals-aa4f1.cloudfunctions.net/campWebhook"
       });
+
 
       // 3. Redirect to CAMP hosted page
       window.location.href = session.paymentUrl;
