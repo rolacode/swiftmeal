@@ -63,7 +63,7 @@ export default function Signup() {
           <div className="flex items-center justify-between mt-3">
             <label className="flex items-center gap-3">
               <span className="text-sm font-medium">Role</span>
-              <select value={role} onChange={(e)=>setRole(e.target.value)} className="border rounded px-2 py-1">
+              <select value={role} onChange={(e)=>setRole(e.target.value)} className="text-amber-200 bg-orange-400 border rounded px-2 py-1">
                 <option value="buyer">Buyer</option>
                 <option value="seller">Seller</option>
               </select>

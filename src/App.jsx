@@ -12,6 +12,9 @@ import NotFound from "./pages/NotFound";
 import { CategoryBar } from "./components/CategoryBar";
 import BuyerDashboard from "./pages/BuyerDashboard";
 import SellerDashboard from "./pages/SellerDashboard";
+import SavedMeals from "./pages/SavedMeals";
+import OrderHistory from "./pages/OrderHistory";
+import BuyerProfile from "./pages/BuyerProfile";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ProtectedRoleRoute from "./components/ProtectedRoleRoute";
 import SellerOrders from "./pages/SellerOrders";
@@ -31,15 +34,18 @@ export default function App() {
       {/* MAIN ROUTES */}
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="buyer-home" element={<Navigate to="/buyer/home" replace />} /> */}
+        <Route path="buyer-home" element={<Navigate to="/buyer/home" replace />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/reset" element={<ResetPassword />} />
         <Route path="/order-success" element={<OrderSuccess />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/order-success" element={<OrderSuccess />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/buyer/saved-meals" element={<SavedMeals />} />
+        <Route path="/buyer/orders" element={<OrderHistory />} />
+        <Route path="/buyer/profile" element={<BuyerProfile />} />
+
 
         <Route path="/verify-email" element={<VerifyEmail />} />
 

@@ -1,4 +1,4 @@
-// src/components/RedirectAnimation.jsx
+import React from "react";
 import { motion } from "framer-motion";
 
 export function SlideIn({ children }) {

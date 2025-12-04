@@ -1,7 +1,8 @@
 import React from "react";
+import { useApp } from "../context/AppContext"
 
 export default function ProductCard({ product }) {
-  // const { addToCart } = useAppContext();
+  const { addToCart } = useApp();
 
   return (
     <div className="flex flex-col p-3 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 group">

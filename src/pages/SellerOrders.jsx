@@ -6,46 +6,30 @@ export default function SellerOrders() {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    if (!auth.currentUser) return;
-
-    const sellerId = auth.currentUser.uid;
-
     const q = query(
       collection(db, "orders"),
-      where("sellerId", "==", sellerId)
+      where("sellerId", "==", auth.currentUser.uid)
     );
 
-    return onSnapshot(q, (snap) => {
-      const data = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
-      setOrders(data);
+    const unsub = onSnapshot(q, (snap) => {
+      setOrders(snap.docs.map((d) => ({ id: d.id, ...d.data() })));
     });
+
+    return unsub;
   }, []);
 
   return (
-    <div className="max-w-3xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-4">📦 Incoming Orders</h1>
+    <div className="p-6">
+      <h1 className="text-xl font-semibold mb-4">Crypto Orders</h1>
 
-      {orders.length === 0 && <p>No orders yet.</p>}
-
-      <div className="space-y-4">
-        {orders.map((o) => (
-          <div
-            key={o.id}
-            className="p-4 border rounded bg-white shadow"
-          >
-            <h2 className="text-xl font-semibold">{o.mealName}</h2>
-
-            <p>Status: <span className="font-bold">{o.status}</span></p>
-            <p>Buyer: {o.buyerId}</p>
-
-            {o.txHash && (
-              <p className="text-sm text-gray-600 break-all">
-                TxHash: {o.txHash}
-              </p>
-            )}
-          </div>
-        ))}
-      </div>
+      {orders.map((o) => (
+        <div key={o.id} className="border p-3 rounded mb-2">
+          <p>Meal: {o.mealId}</p>
+          <p>Amount: ${o.amountUSD}</p>
+          <p>Status: <b>{o.cryptoStatus}</b></p>
+          {o.txHash && <p>Tx: {o.txHash}</p>}
+        </div>
+      ))}
     </div>
   );
 }

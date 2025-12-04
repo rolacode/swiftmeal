@@ -4,31 +4,35 @@ const admin = require("firebase-admin");
 admin.initializeApp();
 const db = admin.firestore();
 
-// ----------------------------
-// 1️⃣ CAMP PAYMENT WEBHOOK
-// ----------------------------
 exports.campWebhook = functions.https.onRequest(async (req, res) => {
   try {
-    const event = req.body;
+    const body = req.body;
 
-    if (!event || !event.orderId) {
-      return res.status(400).send("Invalid payload");
+    console.log("🔥 CAMP Webhook Received:", JSON.stringify(body));
+
+    if (!body.reference) {
+      return res.status(400).send("Missing payment reference");
     }
 
-    const { orderId, status, txHash, amount } = event;
+    const orderId = body.reference;
+
+    let status = "pending";
+    if (body.event === "payment.success") status = "paid";
+    if (body.event === "payment.failed") status = "failed";
 
     await db.collection("orders").doc(orderId).update({
-      status: status || "unknown",
-      txHash: txHash || null,
-      amountPaid: amount || null,
+      cryptoStatus: status,
+      txHash: body.txHash || null,
+      amountPaid: body.amount || null,
+      token: body.token || "USDC",
       updatedAt: admin.firestore.FieldValue.serverTimestamp(),
     });
 
-    console.log("Updated order:", orderId, "→", status);
+    console.log(`✅ Order Updated → ${orderId} (${status})`);
 
-    return res.status(200).send("OK");
+    return res.status(200).json({ received: true });
   } catch (err) {
     console.error("Webhook Error:", err);
-    return res.status(500).send("Server Error");
+    return res.status(500).send("Webhook error");
   }
 });
